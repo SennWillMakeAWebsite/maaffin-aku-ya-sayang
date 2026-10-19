@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>for ike ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(255, 70, 160, .18), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(255, 0, 119, .10), transparent 30%),
+        #09050a;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================== */
+
+    .background-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .25;
+      animation: orbMove 8s ease-in-out infinite alternate;
+    }
+
+    .orb.one {
+      width: 280px;
+      height: 280px;
+      background: #ff2f92;
+      top: -80px;
+      left: -80px;
+    }
+
+    .orb.two {
+      width: 320px;
+      height: 320px;
+      background: #ff74ba;
+      right: -150px;
+      bottom: 5%;
+      animation-delay: -3s;
+    }
+
+    @keyframes orbMove {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(35px, 30px) scale(1.15);
+      }
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(255, 123, 187, .55);
+      animation: floatHeart linear forwards;
+      text-shadow: 0 0 12px #ff4fa3;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: .7;
+      }
+
+      100% {
+        transform: translateY(-115vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       GENERAL
+    ========================== */
+
+    section {
+      min-height: 100vh;
+      width: 100%;
+      padding: 60px 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: 1s ease;
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pink {
+      color: #ff79bb;
+      text-shadow:
+        0 0 8px rgba(255, 79, 163, .8),
+        0 0 25px rgba(255, 79, 163, .45);
+    }
+
+    /* =========================
+       OPENING
+    ========================== */
+
+    #opening {
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .tiny {
+      font-size: 12px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #ff8bc3;
+      opacity: .7;
+      margin-bottom: 14px;
+    }
+
+    .opening-title {
+      font-size: clamp(42px, 10vw, 80px);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .opening-subtitle {
+      color: #cdbcc6;
+      font-size: 14px;
+      max-width: 430px;
+      line-height: 1.8;
+      margin: auto;
+    }
+
+    .start-btn,
+    .next-btn,
+    .forgive-btn {
+      border: 1px solid rgba(255, 108, 180, .55);
+      color: white;
+      background: rgba(255, 62, 157, .09);
+      backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 14px 25px;
+      margin-top: 32px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .35s;
+      box-shadow:
+        inset 0 0 15px rgba(255, 73, 161, .08),
+        0 0 20px rgba(255, 73, 161, .12);
+    }
+
+    .start-btn:hover,
+    .next-btn:hover,
+    .forgive-btn:hover {
+      transform: translateY(-3px);
+      border-color: #ff67ae;
+      background: rgba(255, 62, 157, .18);
+      box-shadow: 0 0 30px rgba(255, 69, 159, .3);
+    }
+
+    /* =========================
+       CHARACTERS
+    ========================== */
+
+    .scene {
+      width: min(700px, 100%);
+      height: 250px;
+      position: relative;
+      margin-top: 35px;
+    }
+
+    .ground {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 95, 174, .55),
+        transparent
+      );
+
+      box-shadow: 0 0 15px rgba(255, 71, 163, .6);
+    }
+
+    .person {
+      width: 80px;
+      height: 150px;
+      position: absolute;
+      bottom: 27px;
+      transition: 2s cubic-bezier(.65, 0, .35, 1);
+    }
+
+    .husen {
+      left: 10%;
+    }
+
+    .ike {
+      right: 10%;
+    }
+
+    .scene.together .husen {
+      left: calc(50% - 92px);
+    }
+
+    .scene.together .ike {
+      right: calc(50% - 92px);
+    }
+
+    .head {
+      position: absolute;
+      width: 52px;
+      height: 55px;
+      border-radius: 50%;
+      background: #ffd7cb;
+      top: 8px;
+      left: 14px;
+      z-index: 3;
+    }
+
+    .hair {
+      position: absolute;
+      width: 56px;
+      height: 32px;
+      background: #2a1722;
+      border-radius: 40px 40px 15px 15px;
+      top: 3px;
+      left: 12px;
+      z-index: 4;
+    }
+
+    .ike .hair {
+      height: 62px;
+      border-radius: 40px 40px 25px 25px;
+    }
+
+    .body {
+      position: absolute;
+      width: 55px;
+      height: 75px;
+      top: 58px;
+      left: 13px;
+      border-radius: 22px 22px 12px 12px;
+      background: linear-gradient(180deg, #27202a, #141016);
+    }
+
+    .ike .body {
+      background: linear-gradient(180deg, #ff6db2, #d93282);
+    }
+
+    .leg {
+      width: 15px;
+      height: 35px;
+      background: #151117;
+      position: absolute;
+      top: 125px;
+      border-radius: 10px;
+    }
+
+    .leg.left {
+      left: 22px;
+    }
+
+    .leg.right {
+      right: 22px;
+    }
+
+    .ike .leg {
+      background: #402332;
+    }
+
+    .name {
+      position: absolute;
+      top: -25px;
+      width: 100%;
+      font-size: 11px;
+      color: #d9c7d0;
+      letter-spacing: 1px;
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 30px;
+      top: 74px;
+      right: -18px;
+      opacity: 0;
+      transform: translateY(10px) rotate(-15deg);
+      transition: 1s ease 1.4s;
+      z-index: 8;
+    }
+
+    .scene.together .flower {
+      opacity: 1;
+      transform: translateY(0) rotate(8deg);
+    }
+
+    .heart-between {
+      position: absolute;
+      left: 50%;
+      top: 70px;
+      transform: translate(-50%, 10px) scale(.3);
+      opacity: 0;
+      color: #ff66ad;
+      font-size: 24px;
+      text-shadow: 0 0 20px #ff3c98;
+      transition: 1s ease 1.7s;
+    }
+
+    .scene.together .heart-between {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+      animation: heartBeat 1.4s infinite 2.5s;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% {
+        transform: translate(-50%, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, 0) scale(1.18);
+      }
+    }
+
+    /* =========================
+       LETTER
+    ========================== */
+
+    #letter {
+      display: none;
+    }
+
+    .letter-container {
+      width: min(650px, 100%);
+    }
+
+    .letter-heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .letter-heading span {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #ff79b9;
+      text-transform: uppercase;
+    }
+
+    .letter-heading h2 {
+      font-size: clamp(28px, 7vw, 45px);
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    .letter-card {
+      padding: 32px;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 111, 181, .22);
+      background: rgba(255, 255, 255, .035);
+      backdrop-filter: blur(18px);
+      box-shadow:
+        inset 0 0 30px rgba(255, 81, 166, .025),
+        0 20px 80px rgba(0, 0, 0, .3);
+    }
+
+    .letter-card p {
+      color: #ded2d9;
+      line-height: 2;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .letter-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .signature {
+      color: #ff78b9 !important;
+      margin-top: 32px;
+    }
+
+    /* =========================
+       FINAL
+    ========================== */
+
+    #final {
+      display: none;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .final-box {
+      width: min(580px, 100%);
+      padding: 35px 25px;
+    }
+
+    .final-box h2 {
+      font-size: clamp(30px, 8vw, 55px);
+      font-weight: 500;
+    }
+
+    .final-box p {
+      margin-top: 15px;
+      color: #cbbcc4;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    #accepted {
+      margin-top: 30px;
+      opacity: 0;
+      transform: scale(.8);
+      transition: .8s ease;
+    }
+
+    #accepted.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #accepted h3 {
+      color: #ff79b9;
+      font-size: 23px;
+      font-weight: 500;
+      text-shadow: 0 0 20px rgba(255, 68, 157, .6);
+    }
+
+    #accepted p {
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 520px) {
+      section {
+        padding: 45px 18px;
+      }
+
+      .scene {
+        height: 220px;
+      }
+
+      .person {
+        transform: scale(.85);
+      }
+
+      .husen {
+        left: 3%;
+      }
+
+      .ike {
+        right: 3%;
+      }
+
+      .scene.together .husen {
+        left: calc(50% - 83px);
+      }
+
+      .scene.together .ike {
+        right: calc(50% - 83px);
+      }
+
+      .letter-card {
+        padding: 25px 21px;
+      }
+
+      .letter-card p {
+        font-size: 13px;
+        line-height: 1.9;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background-glow">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+  </div>
+
+  <div id="particles"></div>
+
+
+  <!-- =========================
+       OPENING
+  ========================== -->
+
+  <section id="opening">
+
+    <div>
+      <div class="tiny">a small thing i made</div>
+
+      <h1 class="opening-title">
+        hai, <span class="pink">ike.</span>
+      </h1>
+
+      <p class="opening-subtitle">
+        ada sesuatu yang pengen aku sampein.
+        mungkin sedikit berlebihan karena aku malah bikin web,
+        tapi baca sampai selesai ya.
+      </p>
+
+      <button class="start-btn" onclick="startStory()">
+        ada sesuatu buat kamu ♡
+      </button>
+    </div>
+
+
+    <div class="scene" id="openingScene">
+
+      <div class="ground"></div>
+
+      <!-- HUSEN -->
+      <div class="person husen">
+
+        <div class="name">husen</div>
+
+        <div class="hair"></div>
+        <div class="head"></div>
+        <div class="body"></div>
+
+        <div class="leg left"></div>
+        <div class="leg right"></div>
+
+        <div class="flower">🌷</div>
+
+      </div>
+
+
+      <!-- IKE -->
+      <div class="person ike">
+
+        <div class="name">ike</div>
+
+        <div class="hair"></div>
+        <div class="head"></div>
+        <div class="body"></div>
+
+        <div class="leg left"></div>
+        <div class="leg right"></div>
+
+      </div>
+
+      <div class="heart-between">♥</div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       LETTER
+  ========================== -->
+
+  <section id="letter">
+
+    <div class="letter-container">
+
+      <div class="letter-heading hidden reveal">
+
+        <span>for ike</span>
+
+        <h2>
+          aku cuma mau bilang
+          <span class="pink">maaf.</span>
+        </h2>
+
+      </div>
+
+
+      <div class="letter-card hidden reveal">
+
+        <p>
+          Ike,
+        </p>
+
+        <p>
+          aku bikin ini karena rasanya kalau cuma bilang
+          “maaf” lewat chat itu kurang.
+        </p>
+
+        <p>
+          aku tau mungkin ada sikap atau perkataan aku
+          yang bikin kamu kesel, kecewa, atau malah kepikiran.
+          dan aku sadar, harusnya aku bisa lebih baik dari itu.
+        </p>
+
+        <p>
+          aku nggak mau cari alasan buat ngebenerin apa yang
+          aku lakuin. aku cuma mau jujur kalau aku
+          <span class="pink">beneran minta maaf.</span>
+        </p>
+
+        <p>
+          mungkin web kecil ini keliatan agak berlebihan wkwk,
+          tapi gapapa. aku cuma pengen kamu tau kalau aku
+          nggak nganggep ini sebagai hal kecil yang bisa
+          aku lupain gitu aja.
+        </p>
+
+        <p>
+          aku masih banyak kurangnya. kadang suka salah ngomong,
+          salah bersikap, atau baru sadar setelah semuanya kejadian.
+        </p>
+
+        <p>
+          jadi...
+        </p>
+
+        <p class="pink">
+          maafin aku ya, Ike.
+        </p>
+
+        <p>
+          aku nggak minta semuanya langsung baik-baik aja
+          setelah kamu baca ini.
+        </p>
+
+        <p>
+          aku cuma berharap, pelan-pelan semuanya
+          bisa kembali baik lagi.
+        </p>
+
+        <p class="signature">
+          — husen ♡
+        </p>
+
+      </div>
+
+
+      <div style="text-align:center">
+        <button class="next-btn hidden reveal" onclick="goFinal()">
+          satu hal lagi...
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FINAL
+  ========================== -->
+
+  <section id="final">
+
+    <div class="final-box">
+
+      <div class="tiny">one last thing</div>
+
+      <h2>
+        maafin aku ya,
+        <span class="pink">Ike?</span>
+      </h2>
+
+      <p>
+        nggak ada alasan panjang di sini.
+        aku cuma pengen bilang maaf dengan cara
+        yang sedikit lebih niat dari biasanya.
+      </p>
+
+
+      <div class="scene" id="finalScene">
+
+        <div class="ground"></div>
+
+        <div class="person husen">
+
+          <div class="name">husen</div>
+
+          <div class="hair"></div>
+          <div class="head"></div>
+          <div class="body"></div>
+
+          <div class="leg left"></div>
+          <div class="leg right"></div>
+
+          <div class="flower">🌷</div>
+
+        </div>
+
+
+        <div class="person ike">
+
+          <div class="name">ike</div>
+
+          <div class="hair"></div>
+          <div class="head"></div>
+          <div class="body"></div>
+
+          <div class="leg left"></div>
+          <div class="leg right"></div>
+
+        </div>
+
+        <div class="heart-between">♥</div>
+
+      </div>
+
+
+      <button class="forgive-btn" id="forgiveBtn" onclick="forgive()">
+        maafin aku ♡
+      </button>
+
+
+      <div id="accepted">
+
+        <h3>thank you, ike. ♡</h3>
+
+        <p>
+          makasih udah baca sampai sini.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <script>
+
+    /* =========================
+       PARTICLES
+    ========================== */
+
+    const particleContainer = document.getElementById("particles");
+
+    function createParticle() {
+
+      const particle = document.createElement("span");
+
+      particle.classList.add("particle");
+
+      const symbols = ["♡", "♥", "✦", "·"];
+
+      particle.innerHTML =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+      particle.style.left =
+        Math.random() * 100 + "vw";
+
+      particle.style.fontSize =
+        (Math.random() * 13 + 8) + "px";
+
+      particle.style.animationDuration =
+        (Math.random() * 7 + 7) + "s";
+
+      particle.style.opacity =
+        Math.random() * 0.5;
+
+      particleContainer.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 15000);
+
+    }
+
+    setInterval(createParticle, 650);
+
+
+    /* =========================
+       START
+    ========================== */
+
+    function startStory() {
+
+      const scene =
+        document.getElementById("openingScene");
+
+      scene.classList.add("together");
+
+
+      setTimeout(() => {
+
+        const letter =
+          document.getElementById("letter");
+
+        letter.style.display = "flex";
+
+        letter.scrollIntoView({
+          behavior: "smooth"
+        });
+
+
+        setTimeout(() => {
+
+          document
+            .querySelectorAll(".reveal")
+            .forEach((element, index) => {
+
+              setTimeout(() => {
+                element.classList.add("show");
+              }, index * 300);
+
+            });
+
+        }, 500);
+
+      }, 2200);
+
+    }
+
+
+    /* =========================
+       FINAL PAGE
+    ========================== */
+
+    function goFinal() {
+
+      const finalSection =
+        document.getElementById("final");
+
+      finalSection.style.display = "flex";
+
+      finalSection.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =========================
+       FORGIVE BUTTON
+    ========================== */
+
+    function forgive() {
+
+      const scene =
+        document.getElementById("finalScene");
+
+      const accepted =
+        document.getElementById("accepted");
+
+      const button =
+        document.getElementById("forgiveBtn");
+
+
+      scene.classList.add("together");
+
+      button.innerHTML = "♡";
+
+      button.style.pointerEvents = "none";
+
+
+      setTimeout(() => {
+
+        accepted.classList.add("visible");
+
+        heartBurst();
+
+      }, 1800);
+
+    }
+
+
+    /* =========================
+       HEART BURST
+    ========================== */
+
+    function heartBurst() {
+
+      for (let i = 0; i < 35; i++) {
+
+        setTimeout(() => {
+
+          const heart =
+            document.createElement("span");
+
+          heart.classList.add("particle");
+
+          heart.innerHTML = "♥";
+
+          heart.style.left =
+            (35 + Math.random() * 30) + "vw";
+
+          heart.style.bottom = "20vh";
+
+          heart.style.fontSize =
+            (Math.random() * 17 + 9) + "px";
+
+          heart.style.animationDuration =
+            (Math.random() * 3 + 3) + "s";
+
+          heart.style.color =
+            "#ff67ad";
+
+          particleContainer.appendChild(heart);
+
+
+          setTimeout(() => {
+            heart.remove();
+          }, 7000);
+
+        }, i * 45);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+        </html>

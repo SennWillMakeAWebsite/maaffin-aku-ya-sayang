@@ -1,534 +1,574 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>for ike ♡</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      font-family: "Poppins", sans-serif;
-      color: #fff;
-      background:
-        radial-gradient(circle at 50% 15%, rgba(255, 70, 160, .18), transparent 35%),
-        radial-gradient(circle at 20% 80%, rgba(255, 0, 119, .10), transparent 30%),
-        #09050a;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-    /* =========================
-       BACKGROUND
-    ========================== */
-
-    .background-glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -3;
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: .25;
-      animation: orbMove 8s ease-in-out infinite alternate;
-    }
-
-    .orb.one {
-      width: 280px;
-      height: 280px;
-      background: #ff2f92;
-      top: -80px;
-      left: -80px;
-    }
-
-    .orb.two {
-      width: 320px;
-      height: 320px;
-      background: #ff74ba;
-      right: -150px;
-      bottom: 5%;
-      animation-delay: -3s;
-    }
-
-    @keyframes orbMove {
-      from {
-        transform: translate(0, 0) scale(1);
-      }
-
-      to {
-        transform: translate(35px, 30px) scale(1.15);
-      }
-    }
-
-    #particles {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .particle {
-      position: absolute;
-      bottom: -40px;
-      color: rgba(255, 123, 187, .55);
-      animation: floatHeart linear forwards;
-      text-shadow: 0 0 12px #ff4fa3;
-    }
-
-    @keyframes floatHeart {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: .7;
-      }
-
-      100% {
-        transform: translateY(-115vh) rotate(25deg);
-        opacity: 0;
-      }
-    }
-
-    /* =========================
-       GENERAL
-    ========================== */
-
-    section {
-      min-height: 100vh;
-      width: 100%;
-      padding: 60px 22px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .hidden {
-      opacity: 0;
-      transform: translateY(25px);
-      transition: 1s ease;
-    }
-
-    .show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .pink {
-      color: #ff79bb;
-      text-shadow:
-        0 0 8px rgba(255, 79, 163, .8),
-        0 0 25px rgba(255, 79, 163, .45);
-    }
-
-    /* =========================
-       OPENING
-    ========================== */
-
-    #opening {
-      text-align: center;
-      flex-direction: column;
-    }
-
-    .tiny {
-      font-size: 12px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: #ff8bc3;
-      opacity: .7;
-      margin-bottom: 14px;
-    }
-
-    .opening-title {
-      font-size: clamp(42px, 10vw, 80px);
-      font-weight: 500;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .opening-subtitle {
-      color: #cdbcc6;
-      font-size: 14px;
-      max-width: 430px;
-      line-height: 1.8;
-      margin: auto;
-    }
-
-    .start-btn,
-    .next-btn,
-    .forgive-btn {
-      border: 1px solid rgba(255, 108, 180, .55);
-      color: white;
-      background: rgba(255, 62, 157, .09);
-      backdrop-filter: blur(12px);
-      border-radius: 100px;
-      padding: 14px 25px;
-      margin-top: 32px;
-      cursor: pointer;
-      font-size: 13px;
-      transition: .35s;
-      box-shadow:
-        inset 0 0 15px rgba(255, 73, 161, .08),
-        0 0 20px rgba(255, 73, 161, .12);
-    }
-
-    .start-btn:hover,
-    .next-btn:hover,
-    .forgive-btn:hover {
-      transform: translateY(-3px);
-      border-color: #ff67ae;
-      background: rgba(255, 62, 157, .18);
-      box-shadow: 0 0 30px rgba(255, 69, 159, .3);
-    }
-
-    /* =========================
-       CHARACTERS
-    ========================== */
-
-    .scene {
-      width: min(700px, 100%);
-      height: 250px;
-      position: relative;
-      margin-top: 35px;
-    }
-
-    .ground {
-      position: absolute;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 95, 174, .55),
-        transparent
-      );
-
-      box-shadow: 0 0 15px rgba(255, 71, 163, .6);
-    }
-
-    .person {
-      width: 80px;
-      height: 150px;
-      position: absolute;
-      bottom: 27px;
-      transition: 2s cubic-bezier(.65, 0, .35, 1);
-    }
-
-    .husen {
-      left: 10%;
-    }
-
-    .ike {
-      right: 10%;
-    }
-
-    .scene.together .husen {
-      left: calc(50% - 92px);
-    }
-
-    .scene.together .ike {
-      right: calc(50% - 92px);
-    }
-
-    .head {
-      position: absolute;
-      width: 52px;
-      height: 55px;
-      border-radius: 50%;
-      background: #ffd7cb;
-      top: 8px;
-      left: 14px;
-      z-index: 3;
-    }
-
-    .hair {
-      position: absolute;
-      width: 56px;
-      height: 32px;
-      background: #2a1722;
-      border-radius: 40px 40px 15px 15px;
-      top: 3px;
-      left: 12px;
-      z-index: 4;
-    }
-
-    .ike .hair {
-      height: 62px;
-      border-radius: 40px 40px 25px 25px;
-    }
-
-    .body {
-      position: absolute;
-      width: 55px;
-      height: 75px;
-      top: 58px;
-      left: 13px;
-      border-radius: 22px 22px 12px 12px;
-      background: linear-gradient(180deg, #27202a, #141016);
-    }
-
-    .ike .body {
-      background: linear-gradient(180deg, #ff6db2, #d93282);
-    }
-
-    .leg {
-      width: 15px;
-      height: 35px;
-      background: #151117;
-      position: absolute;
-      top: 125px;
-      border-radius: 10px;
-    }
-
-    .leg.left {
-      left: 22px;
-    }
-
-    .leg.right {
-      right: 22px;
-    }
-
-    .ike .leg {
-      background: #402332;
-    }
-
-    .name {
-      position: absolute;
-      top: -25px;
-      width: 100%;
-      font-size: 11px;
-      color: #d9c7d0;
-      letter-spacing: 1px;
-    }
-
-    .flower {
-      position: absolute;
-      font-size: 30px;
-      top: 74px;
-      right: -18px;
-      opacity: 0;
-      transform: translateY(10px) rotate(-15deg);
-      transition: 1s ease 1.4s;
-      z-index: 8;
-    }
-
-    .scene.together .flower {
-      opacity: 1;
-      transform: translateY(0) rotate(8deg);
-    }
-
-    .heart-between {
-      position: absolute;
-      left: 50%;
-      top: 70px;
-      transform: translate(-50%, 10px) scale(.3);
-      opacity: 0;
-      color: #ff66ad;
-      font-size: 24px;
-      text-shadow: 0 0 20px #ff3c98;
-      transition: 1s ease 1.7s;
-    }
-
-    .scene.together .heart-between {
-      opacity: 1;
-      transform: translate(-50%, 0) scale(1);
-      animation: heartBeat 1.4s infinite 2.5s;
-    }
-
-    @keyframes heartBeat {
-      0%, 100% {
-        transform: translate(-50%, 0) scale(1);
-      }
-
-      50% {
-        transform: translate(-50%, 0) scale(1.18);
-      }
-    }
-
-    /* =========================
-       LETTER
-    ========================== */
-
-    #letter {
-      display: none;
-    }
-
-    .letter-container {
-      width: min(650px, 100%);
-    }
-
-    .letter-heading {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .letter-heading span {
-      font-size: 12px;
-      letter-spacing: 4px;
-      color: #ff79b9;
-      text-transform: uppercase;
-    }
-
-    .letter-heading h2 {
-      font-size: clamp(28px, 7vw, 45px);
-      font-weight: 500;
-      margin-top: 8px;
-    }
-
-    .letter-card {
-      padding: 32px;
-      border-radius: 25px;
-      border: 1px solid rgba(255, 111, 181, .22);
-      background: rgba(255, 255, 255, .035);
-      backdrop-filter: blur(18px);
-      box-shadow:
-        inset 0 0 30px rgba(255, 81, 166, .025),
-        0 20px 80px rgba(0, 0, 0, .3);
-    }
-
-    .letter-card p {
-      color: #ded2d9;
-      line-height: 2;
-      font-size: 14px;
-      margin-bottom: 22px;
-    }
-
-    .letter-card p:last-child {
-      margin-bottom: 0;
-    }
-
-    .signature {
-      color: #ff78b9 !important;
-      margin-top: 32px;
-    }
-
-    /* =========================
-       FINAL
-    ========================== */
-
-    #final {
-      display: none;
-      text-align: center;
-      flex-direction: column;
-    }
-
-    .final-box {
-      width: min(580px, 100%);
-      padding: 35px 25px;
-    }
-
-    .final-box h2 {
-      font-size: clamp(30px, 8vw, 55px);
-      font-weight: 500;
-    }
-
-    .final-box p {
-      margin-top: 15px;
-      color: #cbbcc4;
-      line-height: 1.8;
-      font-size: 14px;
-    }
-
-    #accepted {
-      margin-top: 30px;
-      opacity: 0;
-      transform: scale(.8);
-      transition: .8s ease;
-    }
-
-    #accepted.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    #accepted h3 {
-      color: #ff79b9;
-      font-size: 23px;
-      font-weight: 500;
-      text-shadow: 0 0 20px rgba(255, 68, 157, .6);
-    }
-
-    #accepted p {
-      font-size: 12px;
-      margin-top: 8px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================== */
-
-    @media (max-width: 520px) {
-      section {
-        padding: 45px 18px;
-      }
-
-      .scene {
-        height: 220px;
-      }
-
-      .person {
-        transform: scale(.85);
-      }
-
-      .husen {
-        left: 3%;
-      }
-
-      .ike {
-        right: 3%;
-      }
-
-      .scene.together .husen {
-        left: calc(50% - 83px);
-      }
-
-      .scene.together .ike {
-        right: calc(50% - 83px);
-      }
-
-      .letter-card {
-        padding: 25px 21px;
-      }
-
-      .letter-card p {
-        font-size: 13px;
-        line-height: 1.9;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="background-glow">
+  <!-- BACKGROUND -->
+  <div class="background">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+  </div>
+
+  <div id="particles"></div>
+
+  <div id="pinkFlash"></div>
+
+
+  <!-- =========================
+       LOADING
+  ========================== -->
+
+  <div id="loader">
+
+    <div class="loader-content">
+
+      <div class="loader-heart">
+        ♡
+      </div>
+
+      <p>
+        something for ike...
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       OPENING
+  ========================== -->
+
+  <section id="opening">
+
+    <div class="opening-content">
+
+      <p class="tiny">
+        a small thing i made
+      </p>
+
+      <h1>
+        hai,
+        <span class="pink">
+          ike.
+        </span>
+      </h1>
+
+      <p class="opening-description">
+        ada sesuatu yang pengen aku sampein.
+        mungkin sedikit berlebihan karena aku malah
+        bikin web, tapi baca sampai selesai ya.
+      </p>
+
+      <button
+        class="main-button"
+        id="startButton"
+        onclick="startStory()"
+      >
+        ada sesuatu buat kamu ♡
+      </button>
+
+    </div>
+
+
+    <!-- CHARACTER SCENE -->
+
+    <div
+      class="scene"
+      id="openingScene"
+    >
+
+      <div
+        class="story-text"
+        id="storyText"
+      ></div>
+
+
+      <div class="ground"></div>
+
+
+      <!-- HUSEN -->
+
+      <div class="person husen">
+
+        <div class="name">
+          husen
+        </div>
+
+        <div class="character">
+
+          <div class="hair"></div>
+
+          <div class="head">
+
+            <div class="eye eye-left"></div>
+            <div class="eye eye-right"></div>
+
+            <div class="blush blush-left"></div>
+            <div class="blush blush-right"></div>
+
+          </div>
+
+          <div class="body">
+            <span>♡</span>
+          </div>
+
+          <div class="arm arm-left"></div>
+          <div class="arm arm-right"></div>
+
+          <div class="leg leg-left"></div>
+          <div class="leg leg-right"></div>
+
+          <div class="flower">
+            🌷
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- IKE -->
+
+      <div class="person ike">
+
+        <div class="name">
+          ike
+        </div>
+
+        <div class="character">
+
+          <div class="hair"></div>
+
+          <div class="head">
+
+            <div class="eye eye-left"></div>
+            <div class="eye eye-right"></div>
+
+            <div class="blush blush-left"></div>
+            <div class="blush blush-right"></div>
+
+          </div>
+
+          <div class="body">
+            <span>♡</span>
+          </div>
+
+          <div class="arm arm-left"></div>
+          <div class="arm arm-right"></div>
+
+          <div class="leg leg-left"></div>
+          <div class="leg leg-right"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="heart-between">
+        ♥
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FLOWER QUESTION
+  ========================== -->
+
+  <section id="flowerSection">
+
+    <div class="question-card">
+
+      <p class="tiny">
+        wait...
+      </p>
+
+      <div class="big-flower">
+        🌷
+      </div>
+
+      <h2>
+        ike...
+      </h2>
+
+      <p class="question-description">
+        sebelum lanjut, aku cuma mau
+        nanya satu hal dulu.
+      </p>
+
+      <h3>
+        maafin aku ya?
+      </h3>
+
+
+      <div class="choice-buttons">
+
+        <button
+          id="yesButton"
+          class="yes-button"
+          onclick="acceptApology()"
+        >
+          maafin ♡
+        </button>
+
+        <button
+          id="noButton"
+          class="no-button"
+          onclick="rejectApology()"
+        >
+          gak
+        </button>
+
+      </div>
+
+
+      <p
+        id="noMessage"
+        class="no-message"
+      ></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       LETTER
+  ========================== -->
+
+  <section id="letter">
+
+    <div class="letter-container">
+
+      <div class="letter-title">
+
+        <p class="tiny">
+          for ike
+        </p>
+
+        <h2>
+          aku cuma mau bilang
+          <span class="pink">
+            maaf.
+          </span>
+        </h2>
+
+      </div>
+
+
+      <div class="letter-card">
+
+        <p>
+          Ike,
+        </p>
+
+        <p>
+          aku bikin ini karena rasanya kalau
+          cuma bilang “maaf” lewat chat itu kurang.
+        </p>
+
+        <p>
+          aku tau mungkin ada sikap atau perkataan
+          aku yang bikin kamu kesel, kecewa,
+          atau malah kepikiran.
+        </p>
+
+        <p>
+          dan aku sadar, harusnya aku bisa
+          lebih baik dari itu.
+        </p>
+
+        <p>
+          aku nggak mau cari alasan buat
+          ngebenerin apa yang aku lakuin.
+          aku cuma mau jujur kalau aku
+          <span class="pink">
+            beneran minta maaf.
+          </span>
+        </p>
+
+        <p>
+          mungkin web kecil ini keliatan agak
+          berlebihan wkwk, tapi gapapa.
+        </p>
+
+        <p>
+          aku cuma pengen kamu tau kalau aku
+          nggak nganggep ini sebagai hal kecil
+          yang bisa aku lupain gitu aja.
+        </p>
+
+        <p>
+          aku masih banyak kurangnya.
+          kadang suka salah ngomong,
+          salah bersikap, atau baru sadar
+          setelah semuanya kejadian.
+        </p>
+
+        <p>
+          jadi...
+        </p>
+
+        <p class="important-text">
+          maafin aku ya, Ike.
+        </p>
+
+        <p>
+          aku nggak minta semuanya langsung
+          baik-baik aja setelah kamu baca ini.
+        </p>
+
+        <p>
+          aku cuma berharap, pelan-pelan
+          semuanya bisa kembali baik lagi.
+        </p>
+
+      </div>
+
+
+      <button
+        class="main-button next-button"
+        onclick="openBeforeEnd()"
+      >
+        sebelum selesai...
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       BEFORE END
+  ========================== -->
+
+  <section id="beforeEnd">
+
+    <div class="before-container">
+
+      <p class="tiny">
+        one more thing
+      </p>
+
+      <h2>
+        ada beberapa hal yang
+        <span class="pink">
+          pengen aku bilang.
+        </span>
+      </h2>
+
+
+      <div class="small-messages">
+
+        <p class="message-line">
+          aku nggak bikin ini supaya kamu
+          harus langsung maafin aku.
+        </p>
+
+        <p class="message-line">
+          aku juga nggak bikin ini supaya
+          kesalahan aku tiba-tiba hilang.
+        </p>
+
+        <p class="message-line">
+          aku bikin ini karena aku pengen
+          kamu tau kalau perasaan kamu
+          penting buat aku.
+        </p>
+
+        <p class="message-line">
+          dan kalau ada yang bisa aku perbaiki,
+          aku pengen nunjukinnya lewat
+          sikap aku setelah ini.
+        </p>
+
+        <p class="message-line important-text">
+          i'm really sorry, ike. ♡
+        </p>
+
+      </div>
+
+
+      <button
+        class="main-button"
+        onclick="openFinal()"
+      >
+        lanjut ♡
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FINAL
+  ========================== -->
+
+  <section id="final">
+
+    <div class="final-container">
+
+      <p class="tiny">
+        one last thing
+      </p>
+
+      <h2>
+        makasih,
+        <span class="pink">
+          Ike.
+        </span>
+      </h2>
+
+      <p class="final-description">
+        makasih udah mau baca semuanya sampai sini.
+      </p>
+
+
+      <!-- FINAL CHARACTERS -->
+
+      <div
+        class="scene final-scene"
+        id="finalScene"
+      >
+
+        <div class="ground"></div>
+
+
+        <!-- HUSEN -->
+
+        <div class="person husen">
+
+          <div class="name">
+            husen
+          </div>
+
+          <div class="character">
+
+            <div class="hair"></div>
+
+            <div class="head">
+
+              <div class="eye eye-left"></div>
+              <div class="eye eye-right"></div>
+
+              <div class="blush blush-left"></div>
+              <div class="blush blush-right"></div>
+
+            </div>
+
+            <div class="body">
+              <span>♡</span>
+            </div>
+
+            <div class="arm arm-left"></div>
+            <div class="arm arm-right"></div>
+
+            <div class="leg leg-left"></div>
+            <div class="leg leg-right"></div>
+
+            <div class="flower">
+              🌷
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- IKE -->
+
+        <div class="person ike">
+
+          <div class="name">
+            ike
+          </div>
+
+          <div class="character">
+
+            <div class="hair"></div>
+
+            <div class="head">
+
+              <div class="eye eye-left"></div>
+              <div class="eye eye-right"></div>
+
+              <div class="blush blush-left"></div>
+              <div class="blush blush-right"></div>
+
+            </div>
+
+            <div class="body">
+              <span>♡</span>
+            </div>
+
+            <div class="arm arm-left"></div>
+            <div class="arm arm-right"></div>
+
+            <div class="leg leg-left"></div>
+            <div class="leg leg-right"></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="heart-between">
+          ♥
+        </div>
+
+      </div>
+
+
+      <div class="final-message">
+
+        <h3>
+          makasih udah dengerin aku. ♡
+        </h3>
+
+        <p>
+          semoga setelah ini semuanya
+          pelan-pelan bisa jadi lebih baik.
+        </p>
+
+      </div>
+
+
+      <div class="signature">
+        from husen,<br>
+        <span>
+          for ike. ♡
+        </span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html> class="background-glow">
     <div class="orb one"></div>
     <div class="orb two"></div>
   </div>
